@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { navItem } from "./constants";
 import Link from "next/link";
 
@@ -54,8 +54,8 @@ export default function DrawerAppBar(props: Props) {
         }}
       >
         <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
-        <AutoStoriesIcon />
-        <Typography>Shax_coder</Typography>
+          <AutoStoriesIcon />
+          <Typography>Shax_coder</Typography>
         </Box>
         <CloseIcon className="cursor-pointer" />
       </Box>
@@ -64,7 +64,9 @@ export default function DrawerAppBar(props: Props) {
         {navItem.map((item) => (
           <ListItem key={item.route} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-                <Link href={item.route} className="text-white">{item.label}</Link>
+              <Link href={item.route} className="text-white">
+                {item.label}
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,64 +78,64 @@ export default function DrawerAppBar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-      <Box sx={{ display: "flex", paddingY:"20px"}}>
-        <AppBar component="nav" sx={{ backgroundColor: "#141414" }}>
-          <Toolbar className="flex justify-between">
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Box
-              component="div"
-              sx={{
-                display: {
-                  xs: "none",
-                  sm: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                },
-                backgroundColor: "#141414" 
-              }}
-            >
-              <AutoStoriesIcon />
-              <Typography>Shax_coder</Typography>
-            </Box>
-            <Box sx={{ display: { xs: "none", sm: "block" }}}>
-              {navItem.map((item) => (
-                <Link key={item.route} href={item.route} className="mx-4">
-                  {item.label}
-                </Link>
-              ))}
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <nav>
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true,
-            }}
+    <Box sx={{ display: "flex", paddingY: "20px" }}>
+      <AppBar component="nav" sx={{ backgroundColor: "#141414" }}>
+        <Toolbar className="flex justify-between">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box
+            component="div"
             sx={{
-              display: { xs: "block", sm: "none" },
-              backgroundColor: "#141414",
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-                backgroundColor: "#141414"
+              display: {
+                xs: "none",
+                sm: "flex",
+                alignItems: "center",
+                gap: "10px",
               },
+              backgroundColor: "#141414",
             }}
           >
-            {drawer}
-          </Drawer>
-        </nav>
-      </Box>
+            <AutoStoriesIcon />
+            <Typography>Shax_coder</Typography>
+          </Box>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {navItem.map((item) => (
+              <Link key={item.route} href={item.route} className="mx-4">
+                {item.label}
+              </Link>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <nav>
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            backgroundColor: "#141414",
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#141414",
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
+    </Box>
   );
 }
